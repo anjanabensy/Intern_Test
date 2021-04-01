@@ -1,0 +1,69 @@
+<HTML>
+<HEAD> 
+<TITLE>Dog Website </TITLE>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" href="symbol.png">
+<STYLE>
+.center{
+margin-top: 100px;
+margin-bottom: 10px;
+margin-right: 50px;
+margin-left: 535px;
+}
+.btn {
+  background-color: teal; 
+  border: none;
+  color: white;
+   margin: 0;
+  position: absolute;
+  padding: 10px 150px;
+  top: 105px;
+  left: 33%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 16px;
+}
+body{
+background-image: url("paw.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+img{
+ border-radius: 12px;
+}
+</STYLE>
+
+<div class="w3-container w3-teal">
+<h1><center> 🐾 Bow-Bow Hub 🐾</center> </h1>
+</div>
+</HEAD>
+<body>
+<input type = "button" value = "click me for a smile" id ="mybutton" onclick ="myfunc()" class="btn"> 
+<img src = "debut-light.png" width = 300 height = 400 id ='dogpic' class="center" opacity = 0.0>
+<p id="demo"> </p>
+<script>
+function myfunc()
+{
+<!--creates an object xmlhttp-->
+var xmlhttp = new XMLHttpRequest();
+<!--function invoked when the request is sent causing status change-->
+xmlhttp.onreadystatechange = function() {
+  <!--checks if response is ready and ok-->
+  if (this.readyState == 4 && this.status == 200) {
+    var reply = JSON.parse(this.responseText);
+	document.getElementById("dogpic").opacity = 1;
+    document.getElementById("dogpic").src = reply.message;
+  }
+};
+var url = "https://dog.ceo/api/breeds/image/random";
+<!--specifies the type of request-->
+xmlhttp.open("GET", url, true);
+<!--send the request-->
+xmlhttp.send();
+}
+</script>
+</body>
+</HTML>
